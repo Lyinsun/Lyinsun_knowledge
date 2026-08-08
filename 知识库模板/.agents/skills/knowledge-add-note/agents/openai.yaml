@@ -1,0 +1,4 @@
+interface:
+  display_name: "知识卡片管理"
+  short_description: "Create governed engineering notes with source ownership"
+  default_prompt: "Use $knowledge-add-note to add or update one engineering knowledge note with evidence."

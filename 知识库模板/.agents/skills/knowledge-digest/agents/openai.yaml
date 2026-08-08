@@ -1,0 +1,4 @@
+interface:
+  display_name: "知识沉淀"
+  short_description: "Capture lessons and decisions as durable knowledge"
+  default_prompt: "Use $knowledge-digest to retain a completed investigation or delivery as reusable knowledge."

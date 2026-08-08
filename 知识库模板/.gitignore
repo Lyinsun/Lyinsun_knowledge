@@ -1,0 +1,15 @@
+# Local editor state
+.DS_Store
+.idea/
+.vscode/
+
+# Private source material and generated reports
+private-sources/
+local-notes/
+reports/private/
+
+# Secrets and local configuration
+.env
+.env.*
+*.pem
+*.key
