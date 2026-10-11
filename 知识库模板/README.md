@@ -1,78 +1,73 @@
-# 工程知识库模板
+# 通用知识库模板
 
-一个可从零开始的、以 Git 和标准 Markdown 为核心的工程知识库模板。它适合记录架构、服务、接口、领域概念、流程、运维经验和决策。
+这是一个可直接复制的纯知识库骨架，只包含目录、模板、维护规范和 Agent Skills，不包含任何真实业务页面、原始资料或仓库信息。
 
-本模板不包含真实人员、组织、项目、域名、仓库地址、账号、密钥或业务数据。复制后可直接替换示例名称并开始使用。
+## 设计原则
 
-它不是空目录：仓库内附带一组完全合成的“事件投递”示例，用来演示来源、架构、服务、接口、流程和决策如何通过普通 Markdown 的双向链接组成可维护知识网络。
+- **索引优先**：Agent 查询时第一个读取 [`_index/topic-map.md`](_index/topic-map.md)。
+- **事实源优先**：文档记录结论、边界和入口；实现细节以当前代码、配置、数据或权威来源为准。
+- **分层存储**：稳定知识、专项上下文和原始证据分开保存。
+- **范围导航**：架构正文先选择稳定 scope，再通过 scope README 和全局索引双重导航。
+- **渐进积累**：优先更新已有页面，不为目录整齐批量搬迁历史文档。
+- **可追溯**：结论链接到精确的代码路径、`raw/` 快照或外部来源。
+- **三段式结构**：正文统一遵循“1. 全景状态图（实/虚线与色块） + 2. 能力演进与子文档路由表 + 3. 详细技术正文”，人类看图表抓重点，AI看正文抓细节。
+- **可迁移**：活动文档、模板、脚本和配置只使用相对路径或运行时自定位，不写死个人/机器相关的绝对路径。
+- **隐私优先**：不保存凭据、个人敏感信息、受限原文或无关对话噪声。
 
-## 设计目标
+## 目录结构
 
-- **不强依赖编辑器**：任何 Markdown 编辑器、Git 平台或 Agent 都可使用；Obsidian 只是可选的阅读器。
-- **索引优先**：从 [`index/topic-map.md`](index/topic-map.md) 定位主题，再阅读权威笔记和来源记录。
-- **证据可追溯**：每项工程事实应关联来源记录；推测与待验证信息显式标记。
-- **隐私默认安全**：机密原始资料放在受控系统，不提交到仓库；公开或共享前运行检查。
-- **面向 Agent**：`AGENTS.md` 和 `.agents/skills/` 提供可复用的查询、写入、导入、沉淀、检查和治理流程。
-
-## 五分钟开始
-
-1. 复制本目录到新的 Git 仓库，并将 `kb.config.yaml` 中的示例名称换成你的知识库名称。
-2. 阅读 [`docs/BOOTSTRAP.md`](docs/BOOTSTRAP.md)、[`AGENTS.md`](AGENTS.md) 和 [`docs/PRIVACY.md`](docs/PRIVACY.md)。
-3. 为已有材料创建 [`sources/`](sources/) 下的来源记录，再以 [`_templates/knowledge-note.md`](_templates/knowledge-note.md) 创建笔记。
-4. 更新 [`index/topic-map.md`](index/topic-map.md)，使读者和 Agent 能从索引发现新内容。
-5. 运行检查：
-
-   ```bash
-   python3 .agents/skills/knowledge-lint/scripts/check_knowledge_base.py --root .
-   ```
-
-## 先看一个可工作的实例
-
-从 [`index/relationship-map.md`](index/relationship-map.md) 开始浏览。该页展示以下合成笔记之间的双向关系：
-
-```mermaid
-flowchart LR
-    SRC["合成来源"] <--> ARC["事件投递架构"]
-    ARC <--> SRV["投递服务"]
-    SRV <--> IFC["投递接口"]
-    IFC <--> WFL["变更流程"]
-    ARC <--> DEC["可靠性决策"]
+```text
+.
+├── AGENTS.md                   # Agent 工作约定
+├── .agents/skills/              # 知识库 Skills
+├── _index/topic-map.md          # 全局索引，查询第一入口
+├── _templates/                  # 正式页面与专项模板
+├── architecture/                # 系统结构；正文按 <scope>/ 组织
+├── services/                    # 仓库、服务、应用和对外接口
+├── modules/                     # 稳定的业务或功能模块
+├── infrastructure/              # 存储、消息、配置、可观测性等基础设施
+├── workflows/                   # 开发、发布、运维、排障与治理流程
+├── concepts/                    # 术语、规则、枚举与状态机
+├── external/                    # 外部资源导航
+├── initiatives/                 # 有明确目标和结束条件的专项
+└── raw/                         # 原始证据快照与编译映射
 ```
 
-每一条双向边都由两篇笔记各自的“关联内容”或“派生笔记”章节维护；检查器会对两篇权威工程笔记之间缺失的反向链接发出警告。详见 [`docs/LINKING.md`](docs/LINKING.md) 和 [`docs/MAINTENANCE.md`](docs/MAINTENANCE.md)。
+## 内容分层
 
-## 目录
+| 层级 | 位置 | 判断问题 |
+| --- | --- | --- |
+| 长期知识 | 七个长期目录 | 脱离当前任务后，结论是否仍应被直接查询？ |
+| 专项知识 | `initiatives/<name>/` | 内容是否只服务于一个有明确起止的专项？ |
+| 原始证据 | `raw/` | 是否需要保留原貌，以便复核或重新编译？ |
 
-| 路径 | 用途 |
-| --- | --- |
-| `index/` | 全局主题地图、导航与内容所有权 |
-| `architecture/` | 系统边界、数据流、技术选型与生命周期 |
-| `services/` | 服务职责、入口、接口与依赖 |
-| `modules/` | 业务或产品模块的实现说明 |
-| `concepts/` | 领域概念、术语和状态定义 |
-| `interfaces/` | API、事件、数据契约和兼容性规则 |
-| `workflows/` | 研发、发布、运维与排障流程 |
-| `operations/` | 运维手册、风险与恢复步骤 |
-| `decisions/` | 可追溯的架构与工程决策记录（ADR） |
-| `sources/` | 可公开共享的来源记录和摘要，不存放机密原文 |
-| `qa/` | 查询、分析和待办的短期记录 |
-| `_templates/` | 新建内容时复制使用的模板 |
-| `.agents/skills/` | 给 Codex 或兼容 Agent 使用的工作流 Skill |
-| `docs/` | 内容模型、隐私规则、依赖、双向关联和协作规范 |
+完整规则见 [`workflows/knowledge-base-organization.md`](workflows/knowledge-base-organization.md)。
 
-## Skill 一览
+## 架构范围
 
-- [`knowledge-query`](.agents/skills/knowledge-query/SKILL.md)：检索知识并报告证据、推断和缺口。
-- [`knowledge-add-note`](.agents/skills/knowledge-add-note/SKILL.md)：按模板新增或更新一篇权威笔记。
-- [`knowledge-ingest`](.agents/skills/knowledge-ingest/SKILL.md)：把原始材料编译成来源记录和多篇关联笔记。
-- [`knowledge-digest`](.agents/skills/knowledge-digest/SKILL.md)：将一次任务或讨论提炼为可复用知识。
-- [`knowledge-lint`](.agents/skills/knowledge-lint/SKILL.md)：只读检查结构、元数据、链接和明显隐私风险。
-- [`knowledge-governance`](.agents/skills/knowledge-governance/SKILL.md)：管理内容归属、复审、保留与共享边界。
+架构正文使用 `architecture/<scope>/<page>.md`。每个 scope 表示一个稳定的系统或业务边界，必须在 [`architecture/README.md`](architecture/README.md) 中定义，并拥有自己的 `README.md` 作为本地索引。`architecture/` 根目录只保留范围导航和可选的跨范围总览。
 
-## 不做什么
+## Skills
 
-- 不把原始私密资料、访问凭据或生产数据提交到 Git。
-- 不把没有来源的猜测写成工程事实。
-- 不要求 Obsidian、数据库、向量检索服务、云存储或特定厂商 API。
+| Skill | 用途 | 写入文件 |
+| --- | --- | --- |
+| `$query` | 按索引查询并给出证据链 | 否 |
+| `$lint` | 检查 Schema、索引、链接、重复和覆盖度 | 否 |
+| `$add-wiki` | 创建或更新少量知识页面 | 是 |
+| `$digest` | 将已解决的对话或实践经验提炼为知识 | 是 |
+| `$ingest` | 将原始资料快照编译为一个或多个页面 | 是 |
 
-详见 [`docs/DEPENDENCIES.md`](docs/DEPENDENCIES.md) 和 [`docs/CONTENT-MODEL.md`](docs/CONTENT-MODEL.md)。
+Skills 位于 `.agents/skills/`。如果使用的 Agent 运行时约定了其他发现路径，请按该运行时的规则映射这些目录，不要维护多份不同步副本。
+
+## 变更与发布
+
+[`workflows/knowledge-base-change-policy.md`](workflows/knowledge-base-change-policy.md) 将小范围知识写入与治理变更分开，并把治理变更按是否影响本仓之外的行为再分两类：目录、模板、Schema、配色和索引重组属仓内治理，与普通知识同路由；Agent 规则、Skill、验证脚本、发布自动化和批量移动删除属跨边界治理，默认独立审查。采用仓库应配置目标分支，未配置时使用仓库默认分支；已授权的修改型任务从干净且已快进到远端最新状态的目标分支基线开始，不假设分支名为 `master`。只有显式执行已批准的实施计划时，才进入“实现 → 测试 → 修复 → 回归”循环；这不是五个知识库 Skill 的默认行为。本模板不默认授权 Git 提交、推送、评审或自动发布。
+
+## 开始使用
+
+1. 复制整个目录到新知识库。
+2. 创建架构页前，在 [`architecture/README.md`](architecture/README.md) 定义 scope，并从 `_templates/architecture-scope-readme.md` 创建 scope README。
+3. 创建新页面时，严格参考 `_templates/` 对应模板（方案使用 `initiative-readme.md`，架构使用 `architecture.md`，原始快照使用 `raw-snapshot.md`，模块使用 `module.md`，通用 Wiki 使用 `wiki.md`，架构范围导航使用 `architecture-scope-readme.md`），并保持统一的“图-表-文”三段式正文结构。
+4. 将新长期页面或专项 `README.md` 登记到 `_index/topic-map.md`。
+5. 完成结构、链接和敏感信息校验；写入审计由 Git commit/MR 承担，不创建或提交逐次操作日志。
+6. 在仓库级规则中明确目标分支和发布方式；修改型任务按变更策略准备最新基线，提交或发布权限不从本模板推断。

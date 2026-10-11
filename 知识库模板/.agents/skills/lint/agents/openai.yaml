@@ -1,0 +1,4 @@
+interface:
+  display_name: "Knowledge Lint"
+  short_description: "Read-only checks for knowledge-base structure and links"
+  default_prompt: "Use $lint to run a read-only health check on this knowledge base."

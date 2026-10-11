@@ -1,0 +1,4 @@
+interface:
+  display_name: "Add Wiki"
+  short_description: "Create traceable wiki pages and maintain indexes"
+  default_prompt: "Use $add-wiki to create or update a traceable knowledge-base page."

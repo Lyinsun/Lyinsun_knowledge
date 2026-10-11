@@ -1,4 +1,0 @@
-interface:
-  display_name: "知识库治理"
-  short_description: "Apply ownership, retention, and privacy rules"
-  default_prompt: "Use $knowledge-governance when creating, reviewing, or sharing knowledge-base content."

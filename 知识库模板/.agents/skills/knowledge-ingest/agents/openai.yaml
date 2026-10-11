@@ -1,4 +1,0 @@
-interface:
-  display_name: "知识导入"
-  short_description: "Convert raw sources into linked engineering notes"
-  default_prompt: "Use $knowledge-ingest to turn supplied materials into a structured knowledge update."

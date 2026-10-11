@@ -1,0 +1,4 @@
+interface:
+  display_name: "Digest"
+  short_description: "Turn resolved conversations into reusable knowledge"
+  default_prompt: "Use $digest to preserve the reusable lessons from this resolved task."

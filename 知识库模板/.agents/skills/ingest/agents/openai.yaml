@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ingest"
+  short_description: "Archive sources and compile them into verified knowledge"
+  default_prompt: "Use $ingest to archive this source and compile its verified claims."

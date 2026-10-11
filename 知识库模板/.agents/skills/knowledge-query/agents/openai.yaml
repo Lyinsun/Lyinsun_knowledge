@@ -1,4 +1,0 @@
-interface:
-  display_name: "知识库检索"
-  short_description: "Search engineering knowledge and report evidence gaps"
-  default_prompt: "Use $knowledge-query to search this engineering knowledge base and return evidence-backed results."

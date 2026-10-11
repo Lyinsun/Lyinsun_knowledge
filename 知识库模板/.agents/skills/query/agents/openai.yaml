@@ -1,0 +1,4 @@
+interface:
+  display_name: "Knowledge Query"
+  short_description: "Query indexed knowledge with a concise evidence trail"
+  default_prompt: "Use $query to answer this question from the knowledge base with an evidence trail."

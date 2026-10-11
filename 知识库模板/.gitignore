@@ -1,15 +1,17 @@
-# Local editor state
+# 临时文件
+temp/
+.tmp/
+
+# 系统和编辑器文件
 .DS_Store
-.idea/
-.vscode/
+Thumbs.db
+*.tmp
+*.bak
+*~
+*.swp
+*.swo
 
-# Private source material and generated reports
-private-sources/
-local-notes/
-reports/private/
+# 运行时与本地操作日志
+*.log
+/log/
 
-# Secrets and local configuration
-.env
-.env.*
-*.pem
-*.key

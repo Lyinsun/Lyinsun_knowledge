@@ -1,3 +1,11 @@
-# 服务
+---
+title: "仓库与服务目录"
+repo: "knowledge-base"
+category: "services"
+tags: ["services", "navigation"]
+created: "2026-08-10"
+updated: "2026-08-10"
+status: "active"
+---
 
-记录每个服务的职责、公开入口、依赖、故障边界和相关接口。避免提交真实网络地址或生产配置。
+本目录用于导航代码仓库、服务、应用、接口和依赖边界；当前仅保留通用导航页。

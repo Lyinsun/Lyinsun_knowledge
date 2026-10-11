@@ -1,4 +1,0 @@
-interface:
-  display_name: "知识库检查"
-  short_description: "Diagnose knowledge links, sources, and safety gaps"
-  default_prompt: "Use $knowledge-lint to diagnose this engineering knowledge base without modifying it."
